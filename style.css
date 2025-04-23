@@ -96,3 +96,28 @@ body{
     margin-left: 20px;
     display: none;
 }
+  @media (max-width: 480px) {
+    .weather h1 {
+      font-size: 50px;
+    }
+  
+    .card {
+      padding: 20px 15px;
+    }
+  
+    .search input {
+      font-size: 16px;
+      padding: 8px 15px;
+      width: 300px;
+    }
+  
+    .weather img {
+      width: 100px;
+      height: 100px;
+    }
+    .search button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+  }
+  
