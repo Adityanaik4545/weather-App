@@ -4,11 +4,16 @@ const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&";
 let searchField=document.querySelector("input");
 let findButton=document.querySelector(".search button");
 let iconChange=document.querySelector(".weather-icon");
+window.onload=function(){
+
+    searchField.focus();
+}
 
 async function updateWeather(city) {
     let response= await fetch(`${apiUrl}q=${city}&appid=${myApi}`);
   
     if (response.status==404) {
+        document.querySelector(".error p").textContent="Invalid city name"
         document.querySelector(".error").style.display="block"
           document.querySelector(".weather").style.display="none"
         document.querySelector(".details").style.display="none"
@@ -54,7 +59,23 @@ async function updateWeather(city) {
     }
 findButton.addEventListener("click",function(){
         let city=searchField.value.trim();
-        if (city=="")
-            return;
+        if (city==""){
+             document.querySelector(".error p").textContent="Please enter city";
+             document.querySelector(".error").style.display="block"
+             return;
+        }
     updateWeather(searchField.value)
+})
+searchField.addEventListener("keydown",function(event){
+    let pressedBtn=event.key;
+        let city=searchField.value.trim();
+        if (pressedBtn=="Enter") {
+            if (city==""){
+                 document.querySelector(".error p").textContent="Please enter city";
+                 document.querySelector(".error").style.display="block"
+                 return;
+            }
+            
+            updateWeather(searchField.value)
+        }
 })
